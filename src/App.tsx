@@ -1,5 +1,7 @@
 import { CurrencyConverter } from "./CurrencyConverter";
-function App() {
+
+const App: React.FC = () => {
+  console.log("Render App");
   return (
     <>
       <h1>Aplicación x</h1>
@@ -9,6 +11,6 @@ function App() {
       </div>
     </>
   );
-}
+};
 
 export default App;
