@@ -9,7 +9,6 @@ export const CurrencyConverter: React.FC = () => {
   const { getExchangeRate } = useExchangeRateFetcher();
 
   useEffect(() => {
-    console.log("getExchangeRate");
     getExchangeRate().then((exchangeRate) => {
       setExchangeRate(exchangeRate);
     });
