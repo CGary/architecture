@@ -38,7 +38,7 @@ function App() {
       />
       <span> dolares</span>
       <p>son</p>
-      <p>{parseFloat(value) * (exchangeRate || 0)}</p>
+      <p>{parseFloat(value || "0") * (exchangeRate || 0)}</p>
     </>
   );
 }
