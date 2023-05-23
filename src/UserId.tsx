@@ -5,20 +5,29 @@ interface State {
 }
 
 export function UserId(): JSX.Element {
-  const [result, setResult] = useState<State>({
-    userId: "loading...",
-  });
+  const [rate, setRate] = useState(0);
+  const [result, setResult] = useState(0);
   useEffect(() => {
     const fetchUserId = async () => {
+      const headers = {
+        "apikey": "uXM4imxrpkOXLiZAC3SrvPFbPcfsPWiC"
+      }
       const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts/1"
+        "https://api.apilayer.com/exchangerates_data/latest?symbols=BOB&base=USD", { headers }
       );
-      const data = await response.json();
-      setResult(data);
+      const { rates } = await response.json()
+      setRate(rates.BOB)
+      calculate(0)
     };
 
     fetchUserId();
   }, []);
 
-  return <div>Value: {result.userId}</div>;
+  const calculate = (value: number) => {
+    value > 0 ? setResult(Math.round(value / rate)) : setResult(0)
+  }
+
+  return (
+    <><input type="number" onChange={(e) => calculate(parseInt(e.target.value))}></input><div>Value: {result}</div></>
+  );
 }
