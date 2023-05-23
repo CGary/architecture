@@ -1,5 +1,8 @@
-export const useExchangeRateFetcher = () => {
-  const getExchangeRate = async () => {
+import { IExchangeRateService } from "../interfaces/IExchangeRateService";
+import { ExchangeRate } from "../entities/ExchangeRate";
+
+export class ExchangeRateService implements IExchangeRateService {
+  async fetchExchangeRate(): Promise<ExchangeRate> {
     const myHeaders = new Headers();
     myHeaders.append("apikey", "uXM4imxrpkOXLiZAC3SrvPFbPcfsPWiC");
     const response = await fetch(
@@ -9,7 +12,6 @@ export const useExchangeRateFetcher = () => {
     const {
       rates: { BOB: exchangeRate },
     } = await response.json();
-    return exchangeRate;
-  };
-  return { getExchangeRate };
-};
+    return new ExchangeRate(exchangeRate);
+  }
+}

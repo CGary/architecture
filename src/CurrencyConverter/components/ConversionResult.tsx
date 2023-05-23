@@ -1,8 +1,12 @@
+import React from "react";
+import { ExchangeRate } from "../entities/ExchangeRate";
+
 export interface ConversionResultProps {
   dollarAmount: number | null;
-  exchangeRate: number | null;
+  exchangeRate: ExchangeRate | null;
   localCurrencyValue: string;
 }
+
 export const ConversionResult: React.FC<ConversionResultProps> = (props) => {
   const { dollarAmount, exchangeRate, localCurrencyValue } = props;
   if (exchangeRate !== null && localCurrencyValue && dollarAmount !== null) {

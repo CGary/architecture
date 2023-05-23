@@ -1,1 +1,1 @@
-export { CurrencyConverter } from "./CurrencyConverter";
+export * from "./components";
