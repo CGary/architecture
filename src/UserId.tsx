@@ -1,24 +1,31 @@
-import { useEffect, useState } from "react";
-
-interface State {
-  userId: number | "loading...";
-}
+import { useEffect, useState } from "react"
 
 export function UserId(): JSX.Element {
-  const [result, setResult] = useState<State>({
-    userId: "loading...",
-  });
+  const [result, setResult] = useState<string | number>(0)
+  const [exchangeRate, setExchangeRate] = useState<number | null>(null)
+
   useEffect(() => {
     const fetchUserId = async () => {
+      const myHeaders = new Headers()
+      myHeaders.append("apikey", "uXM4imxrpkOXLiZAC3SrvPFbPcfsPWiC")
       const response = await fetch(
-        "https://jsonplaceholder.typicode.com/posts/1"
-      );
-      const data = await response.json();
-      setResult(data);
-    };
+        "https://api.apilayer.com/exchangerates_data/latest?symbols=BOB&base=USD",
+        { method: "GET", headers: myHeaders }
+      )
+      const {
+        rates: { BOB: exchangeRate },
+      } = await response.json()
+      setExchangeRate(exchangeRate)
+    }
 
-    fetchUserId();
-  }, []);
+    fetchUserId()
+  }, [])
 
-  return <div>Value: {result.userId}</div>;
+  return (
+    <div>
+      <label>USD: </label>
+      <input type="number" value={result} onChange={e => setResult(e.target.value)} />
+      <div>BOB: {exchangeRate * result}</div>
+    </div>
+  )
 }
