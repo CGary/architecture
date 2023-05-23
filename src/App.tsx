@@ -1,9 +1,9 @@
-import { UserId } from "./UserId";
+import { CurrencyConverter } from "./CurrencyConverter";
 function App() {
   return (
     <>
       <h1>Aplicación x</h1>
-      <UserId />
+      <CurrencyConverter />
       <div>
         <p>otros componentes</p>
       </div>
