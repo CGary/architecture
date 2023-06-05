@@ -5,7 +5,7 @@ function App() {
       <h1>Aplicación x</h1>
       <UserId />
       <div>
-        <p>otros componentes</p>
+        <p>Otros Componentes</p>
       </div>
     </>
   );

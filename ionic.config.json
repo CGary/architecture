@@ -1,0 +1,7 @@
+{
+  "name": "my-vite-appp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}
